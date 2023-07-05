@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 str1 = "Holberton"
 str2 = "School"
-res = f"{str1} {str2}"
-print("Welcome to", res + "!")
+res = str1 + str2
+print(f"Welcome to", res + "!")
 

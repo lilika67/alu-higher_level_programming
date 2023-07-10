@@ -1,9 +1,7 @@
 #!/usr/bin/python3
-
-
-def islower(c):
-    x = ord(c)
-    if x in range(97, 123):
-        return (True)
-    else:
-        return (False)
+for x in range(10):
+    for y in range(x + 1, 10):
+        if x == 8 and y == 9:
+            print("{}{}".format(x, y))
+        else:
+            print("{}{}".format(x, y), end=", ")

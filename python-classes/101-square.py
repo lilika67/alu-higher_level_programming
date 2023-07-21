@@ -1,105 +1,100 @@
 #!/usr/bin/python3
-"""
-Square module.
-"""
+'''Defines a Square class'''
 
 
 class Square:
-    """
-    Square define a geometric shape square
-    Attributes:
-        size (int): the size of the square
-        position (tuple): the square position
-    """
+    '''Square represents an instance of a square shape'''
+
     def __init__(self, size=0, position=(0, 0)):
-        """
-        Init method is a constructor fo Square class
-        Args:
-            size (int): the size of the square
-            position (tuple): a tuple of integer represent
-                the position of square
-        """
+        '''Initializes a new square object
+
+           Args:
+                size (int): The size of the square.
+        '''
         self.size = size
         self.position = position
 
+    def __str__(self):
+        '''
+        Print a rapresentation of square using my_print
+        '''
+        '''
+           Prints graphic representaion of square instance
+        '''
+        if self.size == 0:
+            return ("")
+
+        res = "\n" * self.position[1]
+        for i in range(self.size):
+            res += " " * self.position[0]
+            res += "#" * self.size
+            if i != self.size - 1:
+                res += "\n"
+        return res
+
+    def area(self):
+        '''
+           Computes the area of the square based on the size.
+
+           Returns:
+               The value of the area (int).
+        '''
+        return self.__size ** 2
+
     @property
     def size(self):
-        """
-        Getter of the size attribute
-        """
-        return self.__size
+        '''
+           Retrieves the value of size
+        '''
+        return (self.__size)
 
     @size.setter
     def size(self, value):
-        """
-        Setter of the size attribute
-        Args:
-            value (int): an integer assigned to to the square size
-        Raises:
-            TypeError: if size not an integer
-            ValueError: if size less than 0
-        """
-        if not type(value) is int:
+        '''
+           Sets the value of private attribute size
+        '''
+        if (type(value) != int):
             raise TypeError("size must be an integer")
-        if value < 0:
+        if (value < 0):
             raise ValueError("size must be >= 0")
-        else:
-            self.__size = value
+        self.__size = value
 
     @property
     def position(self):
-        """
-        Getter of the position attribute
-        """
+        '''
+           Retrieves the current position of square instance.
+
+           Returns:
+               The value of position.
+        '''
         return self.__position
 
     @position.setter
     def position(self, value):
-        """
-        Setter of the position attribute
-        Args:
-            value (tuple): a tuple of integer represent
-                the position of the square
-        Raises:
-            TypeError: if position not tuple and had not 2 positive integer
-        """
-        if not type(value) is tuple or len(value) != 2 \
-                or not type(value[0]) is int or not type(value[1]) is int \
-                or value[0] < 0 or value[1] < 0:
-            raise TypeError("position must be a tuple of 2 positive integers")
-        else:
-            self.__position = value
+        '''
+           Sets the value for position and performs type chacks
 
-    def area(self):
-        """
-        Area returns the current square area
-        Returns:
-            integer: the square area
-        """
-        return self.__size**2
+           Args:
+             value (tuple): The position of the square
+        '''
+        if (
+                isinstance(value, tuple) and
+                len(value) == 2 and
+                all(map(lambda i: (isinstance(i, int) and
+                                   i >= 0), value))
+        ):
+            self.__position = value
+        else:
+            raise TypeError("position must be a tuple of 2 positive integers")
 
     def my_print(self):
-        """
-        Prints the square forming by '#' symbol
-        """
-        if self.__size == 0:
-            print()
-        else:
-        
-            print('\n'*self.__position[1], end='')
-            for i in range(0, self.__size):
-                print(' '*self.__position[0], end='')
-                print('#'*self.__size)
+        '''
+           Prints graphic representaion of square instance
+        '''
+        if self.size == 0:
+            print("")
+            return
 
-    def __str__(self):
-        string = ""
-        if self.__size == 0:
-            return "\n"
-
-        string += '\n'*self.__position[1]
-        for i in range(self.__size):
-            string += ' '*self.__position[0]
-            string += '#'*self.__size
-            if i is not self.__size - 1:
-                string += '\n'
-        return string
+        print("\n" * self.position[1], end="")
+        for i in range(self.size):
+            print(" " * self.position[0] + "#" * self.size)

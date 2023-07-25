@@ -1,15 +1,15 @@
 #!/usr/bin/python3
-# function that resds text files and print them
-"""
-    define a function 'read_file'
-"""
+'''Defines function called write_file
+'''
 
 
-def read_file(filename=""):
-    """
-        reads a text file & prints it to stdout
-    """
+def write_file(filename="", text=""):
+    '''Writes text to filename
 
-    with open(filename, encoding='utf-8') as f:
-        for line in f:
-            print(line, end="")
+    Args:
+       filename (str): The directory to the file being modified
+       text (str): The string written into filename.
+    '''
+    with open(filename, 'w', encoding="utf-8") as f:
+        size = f.write(text)
+    return size
